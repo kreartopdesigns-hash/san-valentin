@@ -15,6 +15,16 @@
     display: block;
     box-shadow: 0 0 15px rgba(255, 46, 99, 0.5); /* Resplandor suave */
 }
+        #consola-texto {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff41; /* Color verde Matrix/Terminal */
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 1.2em; /* Evita que la página salte mientras se escribe */
+    margin: 15px 0;
+    font-size: 0.9rem;
+}
         :root {
             --primary: #ff2e63;
             --bg: #080808;
@@ -114,6 +124,8 @@
         <p>&lt;Te amo un día mas&gt;</p>
         <h1>¿Quieres ser mi San Valentín?</h1>
         <img src="nosotros.jpg" alt="Nosotros" class="foto-pareja">
+        <div class="card">
+    <p id="consola-texto"></p> </div>
         <p>Se ha detectado una conexión de alta latencia en mi corazón. Para optimizar el sistema, se requiere confirmación del usuario.</p>
         
         <div class="btn-container">
@@ -149,6 +161,18 @@
             }
         }
         setInterval(draw, 33);
+        const textoRomantico = "Iniciando protocolo de San Valentín... Conexión establecida.";
+let i = 0;
+
+function escribir() {
+    if (i < textoRomantico.length) {
+        document.getElementById("consola-texto").innerHTML += textoRomantico.charAt(i);
+        i++;
+        setTimeout(escribir, 50); // Velocidad de escritura
+    }
+}
+// Llama a esta función cuando cargue la página
+window.onload = escribir;
 
         // Lógica del botón "No" que huye (Clásico de programadores)
         function huir(btn) {
