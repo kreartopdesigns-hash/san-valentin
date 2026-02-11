@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request: San Valentin 2026</title>
     <style>
+        .foto-pareja {
+    width: 150px; /* Tamaño de la foto */
+    height: 150px;
+    border-radius: 50%; /* Esto la hace circular */
+    object-fit: cover; /* Evita que la foto se estire feo */
+    border: 3px solid var(--primary); /* Un borde rojo como el de Nexus */
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 0 15px rgba(255, 46, 99, 0.5); /* Resplandor suave */
+}
         :root {
             --primary: #ff2e63;
             --bg: #080808;
@@ -103,6 +113,7 @@
     <div class="card">
         <p>&lt;system_request&gt;</p>
         <h1>¿Quieres ser mi San Valentín?</h1>
+        <img src="nosotros.jpg" alt="Nosotros" class="foto-pareja">
         <p>Se ha detectado una conexión de alta latencia en mi corazón. Para optimizar el sistema, se requiere confirmación del usuario.</p>
         
         <div class="btn-container">
