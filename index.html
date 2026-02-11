@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request: San Valentin 2026</title>
+    <style>
+        :root {
+            --primary: #ff2e63;
+            --bg: #080808;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Fondo Animado de Código */
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Contenedor Principal (Glassmorphism) */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff2e63, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-family: 'Courier New', Courier, monospace;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #si {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        #si:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--primary);
+        }
+
+        /* El botón "No" que huye */
+        #no {
+            background-color: transparent;
+            color: #aaa;
+            border: 1px solid #555;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="card">
+        <p>&lt;system_request&gt;</p>
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <p>Se ha detectado una conexión de alta latencia en mi corazón. Para optimizar el sistema, se requiere confirmación del usuario.</p>
+        
+        <div class="btn-container">
+            <button id="si" onclick="celebrar()">CONFIRMAR (SÍ)</button>
+            <button id="no" onmouseover="huir(this)">CANCELAR (NO)</button>
+        </div>
+    </div>
+
+    <script>
+        // Animación de fondo: "Binary Hearts"
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = "0101❤️01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 8, 8, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff2e63';
+            ctx.font = fontSize + 'px arial';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = hearts[Math.floor(Math.random() * hearts.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+
+        // Lógica del botón "No" que huye (Clásico de programadores)
+        function huir(btn) {
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function celebrar() {
+            alert("¡Compilación exitosa! ❤️ Acceso concedido a mi corazón.");
+            window.location.href = "https://wa.me/TUNUMERO"; // Cambia esto por tu WhatsApp
+        }
+    </script>
+</body>
+</html>
